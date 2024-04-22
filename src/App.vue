@@ -2,6 +2,9 @@
     <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
       <main>
         <div class="search-box">
+          <label>
+            Vue Weather App
+          </label>
           <input type="text" 
           name="location-search"
           class="search-bar" 
@@ -29,7 +32,7 @@
     name: 'app',
     data() {
       return {
-        api_key: '',
+        api_key: '0b29a16d36052f3475dc127e3cd533aa',
         url_base:'https://api.openweathermap.org/data/2.5/',
         query: '',
         weather: {}
@@ -38,7 +41,7 @@
     methods: {
       fetchWeather(e) {
         if(e.key == 'Enter') {
-          fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+          fetch(`${this.url_base}weather?q=${this.query}&units=imperial&APPID=${this.api_key}`)
           .then((res) => {
             return res.json();
           }).then(this.setResults);
@@ -69,6 +72,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  label {
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    text-align: center;
   }
 
   body {
