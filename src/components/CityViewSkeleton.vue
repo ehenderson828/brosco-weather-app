@@ -22,6 +22,6 @@
   </template>
   
   <script setup>
-  import AnimatedPlaceholder from "@/AnimatedPlaceholder.vue";
+  import AnimatedPlaceholder from "./AnimatedPlaceHolder.vue";
   </script>
   
