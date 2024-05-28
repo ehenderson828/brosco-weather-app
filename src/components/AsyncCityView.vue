@@ -2,6 +2,7 @@
     <div class="flex flex-row flex-1 justify-center items-center h-screen gap-x-40">
       <!-- Weather Overview -->
       <div class="flex flex-col items-center text-white py-12">
+        <!-- Will need to be set manually -->
         <h1 class="text-4xl mb-2">Portland</h1>
         <p class="text-sm mb-12">
           {{
@@ -88,6 +89,7 @@
   const getWeatherData = async () => {
     try {
       const weatherData = await axios.get(
+        // Portland, ME coordinates punched will need to be swapped
         `https://api.openweathermap.org/data/2.5/onecall?lat=43.6615&lon=-70.2553&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=imperial`
       );
   
