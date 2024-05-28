@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-col flex-1 items-center">
+    <div class="flex flex-row flex-1 justify-center items-center h-screen gap-x-40">
       <!-- Weather Overview -->
       <div class="flex flex-col items-center text-white py-12">
-        <h1 class="text-4xl mb-2">{{ route.params.city }}</h1>
+        <h1 class="text-4xl mb-2">Portland</h1>
         <p class="text-sm mb-12">
           {{
             new Date(weatherData.currentTime).toLocaleDateString(
@@ -41,13 +41,15 @@
           alt=""
         />
       </div>
-  
-      <hr class="border-white border-opacity-10 border w-full" />
+
+      <div class="w-px h-96 bg-white mx-5"></div> <!-- Vertical rule -->
   
       <!-- Weekly Weather -->
       <div class="max-w-screen-md w-full py-12">
         <div class="mx-8 text-white">
-          <h2 class="mb-4">7 Day Forecast</h2>
+          <div class="flex justify-center mb-8">
+            <h1 class="text-4xl">7 Day Forecast</h1>
+          </div>
           <div
             v-for="day in weatherData.daily"
             :key="day.dt"
@@ -82,13 +84,11 @@
   
   <script setup>
   import axios from "axios";
-  import { useRoute, useRouter } from "vue-router";
   
-  const route = useRoute();
   const getWeatherData = async () => {
     try {
       const weatherData = await axios.get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=imperial`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=43.6615&lon=-70.2553&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=imperial`
       );
   
       // cal current date & time
@@ -111,7 +111,6 @@
   };
   const weatherData = await getWeatherData();
   
-  const router = useRouter();
   const removeCity = () => {
     const cities = JSON.parse(localStorage.getItem("savedCities"));
     const updatedCities = cities.filter(
